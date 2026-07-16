@@ -716,11 +716,30 @@
 
   function reduceMotion() { return window.matchMedia("(prefers-reduced-motion: reduce)").matches; }
 
+  var gallery = document.getElementById("site-modal-gallery");
+
   function openModal(tile) {
     lastTile = tile;
-    frame.src = tile.getAttribute("href");
     frame.title = tile.dataset.demoLabel || "Pregled sajta";
     dialog.setAttribute("aria-label", tile.dataset.demoLabel || "Pregled sajta");
+    // desktop aplikacije na telefonu/tabletu (≤768px): umesto žive aplikacije
+    // prikaži galeriju slika iz aplikacije (data-demo-images na pločici)
+    var demoImages = tile.getAttribute("data-demo-images");
+    var useGallery = !!(gallery && demoImages &&
+      window.matchMedia("(max-width: 768px)").matches);
+    if (useGallery) {
+      frame.src = "about:blank";
+      frame.hidden = true;
+      gallery.innerHTML = demoImages.split(",").map(function (src, i) {
+        return '<img src="' + src.trim() + '" alt="Ekran aplikacije ' + (i + 1) +
+          '" loading="lazy" decoding="async">';
+      }).join("");
+      gallery.hidden = false;
+    } else {
+      if (gallery) { gallery.hidden = true; gallery.innerHTML = ""; }
+      frame.hidden = false;
+      frame.src = tile.getAttribute("href");
+    }
     // mobilne aplikacije: uži modal u obliku telefona
     dialog.classList.toggle("is-phone", tile.hasAttribute("data-demo-phone"));
     var sw = window.innerWidth - document.documentElement.clientWidth;
@@ -737,6 +756,8 @@
   function finishClose() {
     overlay.hidden = true;
     frame.src = "about:blank";          // zaustavi 3D scenu i video u pozadini
+    if (gallery) { gallery.hidden = true; gallery.innerHTML = ""; }
+    frame.hidden = false;
     document.body.style.overflow = "";
     document.body.style.paddingRight = "";
     isOpen = false;
