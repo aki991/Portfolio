@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Venus — mobilna aplikacija za goste</title>
+    <!-- Skrolbar u stilu portfolija (teal šina, cyan klizač, amber hover) -->
+    <style id="portfolio-scrollbar">
+      ::-webkit-scrollbar{width:11px;height:11px}
+      ::-webkit-scrollbar-track{background:#0C1A18}
+      ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#4FE0F5,#2AA8C4);border-radius:99px;border:3px solid #0C1A18}
+      ::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#FFC85E,#D98E1F)}
+      ::-webkit-scrollbar-corner{background:#0C1A18}
+      *{scrollbar-width:thin;scrollbar-color:#2AA8C4 #0C1A18}
+    </style>
+    <!-- The `react-native-web` recommended style reset: https://necolas.github.io/react-native-web/docs/setup/#root-element -->
+    <style id="expo-reset">
+      /* These styles make the body full-height */
+      html,
+      body {
+        height: 100%;
+      }
+      /* These styles disable body scrolling if you are using <ScrollView> */
+      body {
+        overflow: hidden;
+      }
+      /* These styles make the root element full-height */
+      #root {
+        display: flex;
+        height: 100%;
+        flex: 1;
+      }
+    </style>
+  <link rel="preload" href="_expo/static/css/web-57f7ded08b763b0e47edb48092969b98.css" as="style"><link rel="stylesheet" href="_expo/static/css/web-57f7ded08b763b0e47edb48092969b98.css"><link rel="icon" href="favicon.ico" /></head>
+
+  <body>
+    <!-- Use static rendering with Expo Router to support running without JavaScript. -->
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <!-- The root element for your Expo app. -->
+    <div id="root"></div>
+  <script src="_expo/static/js/web/index-72a71fb9d91ea3d785fb4733697d7d8d.js" defer></script>
+</body>
+</html>

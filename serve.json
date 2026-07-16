@@ -1,0 +1,210 @@
+{
+  "cleanUrls": false,
+  "directoryListing": false,
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/projekti/venus",
+      "destination": "/projekti/venus/index.html"
+    },
+    {
+      "source": "/projekti/venus/",
+      "destination": "/projekti/venus/index.html"
+    },
+    {
+      "source": "/projekti/burger",
+      "destination": "/projekti/burger/index.html"
+    },
+    {
+      "source": "/projekti/burger/",
+      "destination": "/projekti/burger/index.html"
+    },
+    {
+      "source": "/projekti/ai-automatizacija",
+      "destination": "/projekti/ai-automatizacija/index.html"
+    },
+    {
+      "source": "/projekti/ai-automatizacija/",
+      "destination": "/projekti/ai-automatizacija/index.html"
+    },
+    {
+      "source": "/projekti/venus-mobile",
+      "destination": "/projekti/venus-mobile/index.html"
+    },
+    {
+      "source": "/projekti/venus-mobile/",
+      "destination": "/projekti/venus-mobile/index.html"
+    },
+    {
+      "source": "/projekti/ai-vizuelni",
+      "destination": "/projekti/ai-vizuelni/index.html"
+    },
+    {
+      "source": "/projekti/ai-vizuelni/",
+      "destination": "/projekti/ai-vizuelni/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin",
+      "destination": "/projekti/venus-admin/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/",
+      "destination": "/projekti/venus-admin/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/kalendar",
+      "destination": "/projekti/venus-admin/kalendar/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/kalendar/",
+      "destination": "/projekti/venus-admin/kalendar/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/odontogram",
+      "destination": "/projekti/venus-admin/odontogram/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/odontogram/",
+      "destination": "/projekti/venus-admin/odontogram/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti",
+      "destination": "/projekti/venus-admin/pacijenti/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/",
+      "destination": "/projekti/venus-admin/pacijenti/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/podesavanja",
+      "destination": "/projekti/venus-admin/podesavanja/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/podesavanja/",
+      "destination": "/projekti/venus-admin/podesavanja/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/usluge",
+      "destination": "/projekti/venus-admin/usluge/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/usluge/",
+      "destination": "/projekti/venus-admin/usluge/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-1",
+      "destination": "/projekti/venus-admin/pacijenti/pat-1/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-1/",
+      "destination": "/projekti/venus-admin/pacijenti/pat-1/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-2",
+      "destination": "/projekti/venus-admin/pacijenti/pat-2/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-2/",
+      "destination": "/projekti/venus-admin/pacijenti/pat-2/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-3",
+      "destination": "/projekti/venus-admin/pacijenti/pat-3/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-3/",
+      "destination": "/projekti/venus-admin/pacijenti/pat-3/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-4",
+      "destination": "/projekti/venus-admin/pacijenti/pat-4/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-4/",
+      "destination": "/projekti/venus-admin/pacijenti/pat-4/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-5",
+      "destination": "/projekti/venus-admin/pacijenti/pat-5/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-5/",
+      "destination": "/projekti/venus-admin/pacijenti/pat-5/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-6",
+      "destination": "/projekti/venus-admin/pacijenti/pat-6/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-6/",
+      "destination": "/projekti/venus-admin/pacijenti/pat-6/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-7",
+      "destination": "/projekti/venus-admin/pacijenti/pat-7/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-7/",
+      "destination": "/projekti/venus-admin/pacijenti/pat-7/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-8",
+      "destination": "/projekti/venus-admin/pacijenti/pat-8/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-8/",
+      "destination": "/projekti/venus-admin/pacijenti/pat-8/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-9",
+      "destination": "/projekti/venus-admin/pacijenti/pat-9/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-9/",
+      "destination": "/projekti/venus-admin/pacijenti/pat-9/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-10",
+      "destination": "/projekti/venus-admin/pacijenti/pat-10/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-10/",
+      "destination": "/projekti/venus-admin/pacijenti/pat-10/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-11",
+      "destination": "/projekti/venus-admin/pacijenti/pat-11/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-11/",
+      "destination": "/projekti/venus-admin/pacijenti/pat-11/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-12",
+      "destination": "/projekti/venus-admin/pacijenti/pat-12/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-12/",
+      "destination": "/projekti/venus-admin/pacijenti/pat-12/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-13",
+      "destination": "/projekti/venus-admin/pacijenti/pat-13/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-13/",
+      "destination": "/projekti/venus-admin/pacijenti/pat-13/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-14",
+      "destination": "/projekti/venus-admin/pacijenti/pat-14/index.html"
+    },
+    {
+      "source": "/projekti/venus-admin/pacijenti/pat-14/",
+      "destination": "/projekti/venus-admin/pacijenti/pat-14/index.html"
+    }
+  ]
+}

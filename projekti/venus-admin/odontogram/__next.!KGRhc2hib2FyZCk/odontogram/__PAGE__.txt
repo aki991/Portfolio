@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[36926,["/projekti/venus-admin/_next/static/chunks/1ay30r3dpnlws.js","/projekti/venus-admin/_next/static/chunks/14mrh2-p_w84d.js","/projekti/venus-admin/_next/static/chunks/1808kuxli2phj.js","/projekti/venus-admin/_next/static/chunks/0_xeihim2brau.js","/projekti/venus-admin/_next/static/chunks/1fe6g1fxauf56.js","/projekti/venus-admin/_next/static/chunks/1hj9wj6s89ik2.js","/projekti/venus-admin/_next/static/chunks/2cnz35xjcg5mv.js","/projekti/venus-admin/_next/static/chunks/0r26t-vh5d89a.js","/projekti/venus-admin/_next/static/chunks/3ciycae4l8np8.js","/projekti/venus-admin/_next/static/chunks/1s13_mlrvmotx.js","/projekti/venus-admin/_next/static/chunks/3ypap95i6yats.js","/projekti/venus-admin/_next/static/chunks/3_7f-wm6lpqyo.js"],"OdontogramWorkdesk"]
+3:I[97367,["/projekti/venus-admin/_next/static/chunks/1ay30r3dpnlws.js","/projekti/venus-admin/_next/static/chunks/14mrh2-p_w84d.js","/projekti/venus-admin/_next/static/chunks/1808kuxli2phj.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{}],[["$","script","script-0",{"src":"/projekti/venus-admin/_next/static/chunks/3_7f-wm6lpqyo.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"U4DxnovBzBXisD5In9wKk"}
+5:null

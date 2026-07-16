@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI automatizacija upita — AM Digital</title>
+<meta name="description" content="AI asistent koji umesto vas odgovara na pitanja klijenata 24/7, zakazuje termine i nikada ne propusti upit.">
+<style>
+:root{
+  --canvas:#0C1A18;
+  --canvas-deep:#081211;
+  --glass:rgba(18,42,40,.55);
+  --glass-brt:rgba(24,56,53,.65);
+  --line:rgba(92,224,245,.16);
+  --line-strong:rgba(92,224,245,.35);
+  --cyan:#4FE0F5;
+  --cyan-dim:#2AA8C4;
+  --amber:#F2B23C;
+  --amber-deep:#D98E1F;
+  --ink-hi:#DDE9E7;
+  --ink-mid:#9FB4B1;
+  --ink-low:#5E7370;
+  --r-lg:22px;
+  --r-md:16px;
+  --r-sm:10px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+@media (prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth} }
+body{
+  background:
+    radial-gradient(1100px 500px at 78% 0%, rgba(46,143,216,.10), transparent 60%),
+    radial-gradient(900px 600px at 8% 30%, rgba(79,224,245,.05), transparent 60%),
+    var(--canvas);
+  color:var(--ink-mid);
+  font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;
+}
+/* blaga circuit tekstura kao na portfoliju */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.35;z-index:0;
+  background-image:
+    linear-gradient(rgba(79,224,245,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79,224,245,.03) 1px, transparent 1px);
+  background-size:72px 72px;
+}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px}
+h1,h2,h3{color:var(--ink-hi);font-weight:800;letter-spacing:-.5px}
+p{line-height:1.6}
+.amber-text{color:var(--amber);text-shadow:0 0 30px rgba(242,178,60,.35)}
+
+/* skrolbar — standard portfolija */
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:#0C1A18}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#4FE0F5,#2AA8C4);border-radius:99px;border:3px solid #0C1A18}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#FFC85E,#D98E1F)}
+::-webkit-scrollbar-corner{background:#0C1A18}
+@supports not selector(::-webkit-scrollbar){ html{scrollbar-width:thin;scrollbar-color:#2AA8C4 #0C1A18} }
+
+.wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 32px}
+section{padding:72px 0}
+
+/* mini zaglavlje */
+.top{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-mark{width:34px;height:34px;border-radius:11px;border:1px solid var(--line-strong);
+  background:linear-gradient(140deg,rgba(79,224,245,.14),rgba(46,143,216,.06));position:relative;flex:none;
+  box-shadow:0 0 18px rgba(79,224,245,.2)}
+.logo-mark::after{content:"";position:absolute;right:6px;top:6px;width:7px;height:7px;border-radius:50%;
+  background:var(--amber);box-shadow:0 0 10px var(--amber)}
+.logo-name{color:var(--ink-hi);font-weight:800;font-size:17px;letter-spacing:.4px}
+.back{font-size:14px;font-weight:600;color:var(--cyan);text-shadow:0 0 12px rgba(79,224,245,.35)}
+.back:hover{text-shadow:0 0 18px rgba(79,224,245,.8)}
+
+/* eyebrow + dugmad + glass — kao na portfoliju */
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:99px;
+  border:1px solid var(--line-strong);background:rgba(79,224,245,.06);width:max-content;
+  color:var(--cyan);font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);flex:none}
+.btn{height:54px;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;
+  padding:0 40px;font-size:16px;font-weight:700;letter-spacing:.2px;cursor:pointer;border:0;font-family:inherit;
+  transition:transform .18s ease, box-shadow .18s ease, filter .18s ease}
+.btn-amber{background:linear-gradient(180deg,#FFC85E,var(--amber) 45%,var(--amber-deep));color:#3A2604;
+  box-shadow:0 6px 24px rgba(242,178,60,.35), inset 0 1px 0 rgba(255,255,255,.5)}
+.btn-amber:hover{filter:brightness(1.07);transform:translateY(-1px);
+  box-shadow:0 8px 30px rgba(242,178,60,.5), inset 0 1px 0 rgba(255,255,255,.5)}
+.glass{background:var(--glass);border:1px solid var(--line);border-radius:var(--r-lg);
+  backdrop-filter:blur(8px);position:relative;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 18px 50px rgba(0,0,0,.35)}
+.glass::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  box-shadow:0 0 40px rgba(79,224,245,.06) inset}
+
+/* 1 · HERO */
+.hero{padding:56px 0 64px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:22px}
+.hero h1{font-size:clamp(32px,4.5vw,46px);line-height:1.16;letter-spacing:-1px;max-width:760px}
+.hero-sub{font-size:17px;max-width:640px}
+.highlights{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+.hl{display:flex;align-items:center;gap:10px;padding:12px 20px;border-radius:99px;
+  border:1px solid var(--line);background:var(--glass);font-size:14px;font-weight:600;color:var(--ink-hi)}
+.hl svg{stroke:var(--cyan);flex:none;filter:drop-shadow(0 0 6px rgba(79,224,245,.7))}
+.hl.amber svg{stroke:var(--amber);filter:drop-shadow(0 0 6px rgba(242,178,60,.7))}
+
+/* 2 · CHAT PRIKAZI */
+.sec-head{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;margin-bottom:44px}
+.sec-head h2{font-size:30px}
+.sec-sub{font-size:15px;max-width:560px}
+.phones{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:start}
+.phone{
+  border-radius:30px;padding:14px;background:var(--canvas-deep);
+  border:1px solid var(--line-strong);
+  box-shadow:0 0 0 1px rgba(0,0,0,.5), 0 24px 60px rgba(0,0,0,.5), 0 0 40px rgba(79,224,245,.07);
+}
+.phone-screen{border-radius:20px;overflow:hidden;background:
+  linear-gradient(180deg, rgba(18,42,40,.5), rgba(8,18,17,.7))}
+.chat-head{display:flex;align-items:center;gap:10px;padding:14px 16px;
+  background:rgba(18,42,40,.85);border-bottom:1px solid var(--line)}
+.ava{width:34px;height:34px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--line-strong);background:rgba(79,224,245,.1);
+  box-shadow:0 0 14px rgba(79,224,245,.25)}
+.ava svg{stroke:var(--cyan);filter:drop-shadow(0 0 5px rgba(79,224,245,.8))}
+.chat-who{flex:1;min-width:0}
+.chat-who b{display:block;font-size:13px;color:var(--ink-hi);letter-spacing:.2px}
+.chat-who span{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--ink-mid)}
+.on-dot{width:6px;height:6px;border-radius:50%;background:#7ee787;box-shadow:0 0 6px #7ee787;flex:none}
+.chat-body{padding:16px 12px 18px;display:flex;flex-direction:column;gap:10px;min-height:250px}
+.msg{max-width:85%;padding:9px 13px;border-radius:14px;font-size:13px;line-height:1.5;position:relative}
+.msg time{display:block;font-size:10px;color:var(--ink-low);margin-top:4px}
+.msg.client{align-self:flex-end;background:rgba(242,178,60,.14);border:1px solid rgba(242,178,60,.3);
+  color:var(--ink-hi);border-bottom-right-radius:4px}
+.msg.client time{text-align:right}
+.msg.bot{align-self:flex-start;background:rgba(79,224,245,.08);border:1px solid var(--line);
+  color:var(--ink-hi);border-bottom-left-radius:4px}
+.chat-label{margin-top:14px;text-align:center;font-size:13px;font-weight:600;color:var(--ink-mid);
+  display:flex;align-items:center;justify-content:center;gap:8px}
+.chat-label .chip{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+.phone:nth-child(2n) .chat-label .chip{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+/* animacija pojavljivanja balončića — skrivanje važi samo uz aktivan JS
+   (body.js), da sadržaj nikad ne ostane nevidljiv ako skripta ne radi */
+@media (prefers-reduced-motion:no-preference){
+  body.js .reveal .msg{opacity:0;transform:translateY(10px)}
+  body.js .reveal.in .msg{opacity:1;transform:none;transition:opacity .45s ease, transform .45s ease}
+  body.js .reveal.in .msg:nth-child(1){transition-delay:.1s}
+  body.js .reveal.in .msg:nth-child(2){transition-delay:.5s}
+  body.js .reveal.in .msg:nth-child(3){transition-delay:.9s}
+  body.js .reveal.in .msg:nth-child(4){transition-delay:1.3s}
+  body.js .fade{opacity:0;transform:translateY(14px);transition:opacity .5s ease, transform .5s ease}
+  body.js .fade.in{opacity:1;transform:none}
+}
+
+/* 3 · ŠTA SVE MOŽE */
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.feat{padding:28px 26px}
+.icon-tile{width:52px;height:52px;border-radius:15px;display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--line-strong);background:rgba(79,224,245,.07);margin-bottom:18px;
+  box-shadow:0 0 22px rgba(79,224,245,.18), inset 0 0 14px rgba(79,224,245,.08)}
+.icon-tile svg{stroke:var(--cyan);filter:drop-shadow(0 0 6px rgba(79,224,245,.7))}
+.icon-tile.amber{border-color:rgba(242,178,60,.4);background:rgba(242,178,60,.07);
+  box-shadow:0 0 22px rgba(242,178,60,.18), inset 0 0 14px rgba(242,178,60,.08)}
+.icon-tile.amber svg{stroke:var(--amber);filter:drop-shadow(0 0 6px rgba(242,178,60,.7))}
+.feat h3{font-size:16px;margin-bottom:8px}
+.feat p{font-size:14px}
+
+/* 3b · AUTOMATIZACIJE KOJE ŠTEDE VREME */
+.auto-intro{margin-bottom:38px}
+.auto-group{margin-top:44px}
+.auto-group:first-of-type{margin-top:6px}
+.auto-sub-head{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.auto-sub-head h3{font-size:19px;white-space:nowrap}
+.auto-sub-head .sub-num{font-size:12px;font-weight:700;letter-spacing:2px;color:var(--cyan);flex:none;
+  padding:5px 12px;border-radius:99px;border:1px solid var(--line-strong);background:rgba(79,224,245,.06)}
+.auto-group:nth-of-type(2n) .auto-sub-head .sub-num{color:var(--amber);
+  border-color:rgba(242,178,60,.4);background:rgba(242,178,60,.06)}
+.auto-sub-head .sub-line{height:1px;flex:1;background:linear-gradient(90deg,var(--line-strong),transparent)}
+.auto-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.auto-grid .feat{padding:26px 24px}
+.auto-grid .feat h3{white-space:normal}
+
+/* 4 · KAKO POMAŽE POSLU */
+.benefit-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:stretch}
+.benefit-list{padding:34px 32px}
+.b-row{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid rgba(92,224,245,.08)}
+.b-row:last-child{border-bottom:0}
+.b-dot{width:11px;height:11px;border-radius:50%;margin-top:6px;flex:none;
+  background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+.b-row:nth-child(2n) .b-dot{background:var(--amber);box-shadow:0 0 10px var(--amber)}
+.b-row h3{font-size:15px;margin-bottom:5px}
+.b-row p{font-size:14px}
+.industries{padding:34px 32px;display:flex;flex-direction:column;gap:16px;justify-content:center}
+.industries h3{font-size:18px}
+.industries p{font-size:14px}
+.ind-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.ind-chip{padding:8px 16px;border-radius:99px;font-size:13px;font-weight:600;color:var(--cyan);
+  border:1px solid var(--line-strong);background:rgba(79,224,245,.06)}
+.ind-chip.amber{color:var(--amber);border-color:rgba(242,178,60,.4);background:rgba(242,178,60,.06)}
+
+/* 5 · CTA */
+.cta-panel{
+  border-radius:26px;padding:64px 48px;text-align:center;position:relative;overflow:hidden;
+  background:
+    radial-gradient(600px 240px at 50% 0%, rgba(79,224,245,.22), transparent 70%),
+    linear-gradient(160deg,#123B38,#0D2B29 60%,#0A1F1E);
+  border:1px solid rgba(79,224,245,.3);
+  box-shadow:0 0 60px rgba(79,224,245,.12), inset 0 1px 0 rgba(255,255,255,.08);
+  display:flex;flex-direction:column;align-items:center;gap:18px;
+}
+.cta-panel .trace{position:absolute;height:1px;left:0;right:0;
+  background:linear-gradient(90deg,transparent,rgba(79,224,245,.4),transparent)}
+.cta-panel h2{font-size:clamp(24px,3.4vw,32px);max-width:560px;line-height:1.3}
+.cta-panel p{font-size:15px;max-width:480px}
+
+footer{padding:28px 0 36px;text-align:center;font-size:13px;color:var(--ink-low)}
+
+/* responzivnost */
+@media(max-width:980px){
+  .phones{grid-template-columns:1fr;max-width:420px;margin:0 auto}
+  .features{grid-template-columns:1fr 1fr}
+  .benefit-grid{grid-template-columns:1fr}
+  .auto-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .wrap{padding:0 20px}
+  section{padding:56px 0}
+  .features{grid-template-columns:1fr}
+  .auto-grid{grid-template-columns:1fr}
+  .auto-sub-head h3{white-space:normal}
+  .highlights{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <a class="logo" href="../../index.html" target="_top" aria-label="AM Digital — nazad na portfolio">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span class="logo-name">AM&nbsp;Digital</span>
+    </a>
+    <a class="back" href="../../index.html#radovi" target="_top">&larr; Nazad na portfolio</a>
+  </header>
+
+  <!-- 1 · HERO -->
+  <section class="hero">
+    <p class="eyebrow"><span class="dot" aria-hidden="true"></span>AI automatizacija upita</p>
+    <h1>Svaki upit dobije odgovor.<br><span class="amber-text">Odmah. I u 2 ujutru.</span></h1>
+    <p class="hero-sub">AI asistent koji umesto vas odgovara na pitanja klijenata, zakazuje termine i nikada ne propusti poruku — dok se vi bavite svojim poslom.</p>
+    <div class="highlights">
+      <div class="hl">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.9 12.5H11L9.5 22 19 10.5h-6.2z"/></svg>
+        Odgovara za nekoliko sekundi
+      </div>
+      <div class="hl amber">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+        Radi 0&ndash;24, svaki dan
+      </div>
+      <div class="hl">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        Nijedan upit ne ostaje bez odgovora
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · PRIKAZ RAZGOVORA -->
+  <section>
+    <div class="sec-head fade">
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span>Ovako to izgleda</p>
+      <h2>Asistent razgovara umesto vas</h2>
+      <p class="sec-sub">Pravi razgovori kakve asistent vodi svakog dana — prirodno, ljubazno i uvek na vreme.</p>
+    </div>
+    <div class="phones">
+
+      <div class="phone fade">
+        <div class="phone-screen">
+          <div class="chat-head">
+            <span class="ava" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.9L19 9.7l-4.6 2.1L12 17l-2.4-5.2L5 9.7l5.2-1.8z"/></svg></span>
+            <div class="chat-who"><b>AI Asistent</b><span><i class="on-dot"></i>Onlajn</span></div>
+          </div>
+          <div class="chat-body reveal">
+            <div class="msg client">Dobar dan, da li mogu da zakažem pregled ove nedelje?<time>09:42</time></div>
+            <div class="msg bot">Naravno! Imamo slobodno u sredu u 14h ili u petak u 10h. Šta vam više odgovara?<time>09:42</time></div>
+            <div class="msg client">Sreda 14h.<time>09:43</time></div>
+            <div class="msg bot">Odlično, termin je zakazan za sredu u 14h. Poslaću vam podsetnik dan ranije. Vidimo se! 😊<time>09:43</time></div>
+          </div>
+        </div>
+        <p class="chat-label"><span class="chip" aria-hidden="true"></span>Zakazivanje termina</p>
+      </div>
+
+      <div class="phone fade">
+        <div class="phone-screen">
+          <div class="chat-head">
+            <span class="ava" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.9L19 9.7l-4.6 2.1L12 17l-2.4-5.2L5 9.7l5.2-1.8z"/></svg></span>
+            <div class="chat-who"><b>AI Asistent</b><span><i class="on-dot"></i>Onlajn</span></div>
+          </div>
+          <div class="chat-body reveal">
+            <div class="msg client">Koliko košta izbeljivanje zuba?<time>13:07</time></div>
+            <div class="msg bot">Izbeljivanje kod nas kreće od 15.000 RSD. Traje jednu posetu, oko sat vremena. Želite li da vam zakažem konsultaciju?<time>13:07</time></div>
+            <div class="msg client">Može, viknite kad ima mesta.<time>13:08</time></div>
+            <div class="msg bot">Predlažem četvrtak u 12h — konsultacija je besplatna. Da potvrdim?<time>13:08</time></div>
+          </div>
+        </div>
+        <p class="chat-label"><span class="chip" aria-hidden="true"></span>Pitanje o usluzi i ceni</p>
+      </div>
+
+      <div class="phone fade">
+        <div class="phone-screen">
+          <div class="chat-head">
+            <span class="ava" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.9L19 9.7l-4.6 2.1L12 17l-2.4-5.2L5 9.7l5.2-1.8z"/></svg></span>
+            <div class="chat-who"><b>AI Asistent</b><span><i class="on-dot"></i>Onlajn</span></div>
+          </div>
+          <div class="chat-body reveal">
+            <div class="msg client">Da li radite subotom?<time>22:15</time></div>
+            <div class="msg bot">Radimo subotom od 9 do 13h. Mogu odmah da vam rezervišem termin ako želite.<time>22:15</time></div>
+            <div class="msg client">Super, može subota u 10.<time>22:16</time></div>
+            <div class="msg bot">Rezervisano — subota u 10h. Laku noć! 🌙<time>22:16</time></div>
+          </div>
+        </div>
+        <p class="chat-label"><span class="chip" aria-hidden="true"></span>Upit stigao u 22:15 — odgovoren u 22:15</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3 · ŠTA SVE MOŽE -->
+  <section>
+    <div class="sec-head fade">
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span>Mogućnosti</p>
+      <h2>Šta sve može da uradi</h2>
+    </div>
+    <div class="features">
+      <article class="glass feat fade">
+        <div class="icon-tile" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 1 1-4-6.9"/><path d="M9 11l2.5 2.5L21 4"/></svg></div>
+        <h3>Odgovara na česta pitanja</h3>
+        <p>Radno vreme, cene, lokacija, priprema za posetu — klijent dobija tačan odgovor odmah, bez čekanja.</p>
+      </article>
+      <article class="glass feat fade">
+        <div class="icon-tile amber" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="M9 15.5l2 2 4-4"/></svg></div>
+        <h3>Zakazuje, pomera i potvrđuje termine</h3>
+        <p>Vodi ceo dogovor oko termina od početka do kraja — i upiše ga tamo gde vi već vodite raspored.</p>
+      </article>
+      <article class="glass feat fade">
+        <div class="icon-tile" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/></svg></div>
+        <h3>Šalje podsetnike</h3>
+        <p>Automatska poruka dan pre termina drastično smanjuje broj propuštenih dolazaka.</p>
+      </article>
+      <article class="glass feat fade">
+        <div class="icon-tile amber" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6M9 11h6M9 15h3"/></svg></div>
+        <h3>Prikuplja podatke pre posete</h3>
+        <p>Ime, kontakt, razlog dolaska — sve što vam treba čeka vas spremno pre nego što klijent uđe.</p>
+      </article>
+      <article class="glass feat fade">
+        <div class="icon-tile" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3.5 20c.8-3.2 3-5 5.5-5s4.7 1.8 5.5 5"/><path d="M16 8h5m-2.5-2.5L21 8l-2.5 2.5"/></svg></div>
+        <h3>Prosleđuje složenije upite</h3>
+        <p>Kada pitanje traži ljudsku procenu, asistent ga uredno prosledi pravoj osobi — sa celim tokom razgovora.</p>
+      </article>
+      <article class="glass feat fade">
+        <div class="icon-tile amber" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/><path d="M5 2 2.5 4.5M19 2l2.5 2.5"/></svg></div>
+        <h3>Radi neprekidno</h3>
+        <p>Vikend, praznik, tri ujutru — asistent je uvek tu. Upiti koji su ranije propadali sada postaju termini.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 3b · AUTOMATIZACIJE KOJE ŠTEDE VREME -->
+  <section>
+    <div class="sec-head auto-intro fade">
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span>Još automatizacija</p>
+      <h2>I to nije sve &mdash; <span class="amber-text">automatizacije koje štede vreme</span></h2>
+      <p class="sec-sub">Pored razgovora sa klijentima, u pozadini može da radi još dosta toga — tiho, tačno i bez vašeg angažovanja.</p>
+    </div>
+
+    <div class="auto-group">
+      <div class="auto-sub-head fade">
+        <span class="sub-num">01</span>
+        <h3>Komunikacija sa klijentima</h3>
+        <span class="sub-line" aria-hidden="true"></span>
+      </div>
+      <div class="auto-grid" data-auto-grid="komunikacija"></div>
+    </div>
+
+    <div class="auto-group">
+      <div class="auto-sub-head fade">
+        <span class="sub-num">02</span>
+        <h3>Automatizacije iza scene</h3>
+        <span class="sub-line" aria-hidden="true"></span>
+      </div>
+      <div class="auto-grid" data-auto-grid="iza-scene"></div>
+    </div>
+  </section>
+
+  <!-- 4 · KAKO POMAŽE POSLU -->
+  <section>
+    <div class="sec-head fade">
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span>Vrednost za vas</p>
+      <h2>Kako pomaže vašem poslu</h2>
+    </div>
+    <div class="benefit-grid">
+      <div class="glass benefit-list fade">
+        <div class="b-row">
+          <span class="b-dot" aria-hidden="true"></span>
+          <div><h3>Manje vremena na telefonu i porukama</h3>
+          <p>Ponavljajuća pitanja preuzima asistent — telefon prestaje da bude posao sam za sebe.</p></div>
+        </div>
+        <div class="b-row">
+          <span class="b-dot" aria-hidden="true"></span>
+          <div><h3>Manje propuštenih termina</h3>
+          <p>Podsetnici i lake potvrde znače da klijenti zaista dođu — a otkazani termini se brzo popune.</p></div>
+        </div>
+        <div class="b-row">
+          <span class="b-dot" aria-hidden="true"></span>
+          <div><h3>Brži odgovor — više zakazanih klijenata</h3>
+          <p>Klijent koji odmah dobije odgovor ne stigne da pita konkurenciju. Prvi odgovor obično dobija posao.</p></div>
+        </div>
+        <div class="b-row">
+          <span class="b-dot" aria-hidden="true"></span>
+          <div><h3>Osoblje se bavi poslom, ne administracijom</h3>
+          <p>Vaš tim radi ono za šta je plaćen i obučen — dogovaranje, prezakazivanje i evidenciju vodi asistent.</p></div>
+        </div>
+      </div>
+      <div class="glass industries fade">
+        <h3>Nije samo za ordinacije</h3>
+        <p>Isti asistent jednako dobro radi svuda gde klijenti pišu, pitaju i zakazuju — promeni se samo ton i tok razgovora, prilagođen baš vašem poslu.</p>
+        <div class="ind-chips">
+          <span class="ind-chip">Ordinacije</span>
+          <span class="ind-chip amber">Saloni lepote</span>
+          <span class="ind-chip">Servisi</span>
+          <span class="ind-chip amber">Agencije</span>
+          <span class="ind-chip">Restorani</span>
+          <span class="ind-chip amber">Teretane</span>
+        </div>
+        <p>Ako vam klijenti pišu — asistent ima šta da radi.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · CTA -->
+  <section>
+    <div class="cta-panel fade">
+      <div class="trace" style="top:22px" aria-hidden="true"></div>
+      <div class="trace" style="bottom:22px" aria-hidden="true"></div>
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span>Sledeći korak</p>
+      <h2>Zvuči kao nešto što bi vašem poslu dobro došlo?</h2>
+      <p>Javite se — pokazaćemo vam kako bi asistent izgledao baš za vašu delatnost, bez ikakve obaveze.</p>
+      <a class="btn btn-amber" href="../../index.html#kontakt" target="_top">Želim ovo za svoj posao</a>
+    </div>
+  </section>
+
+  <footer>© 2026 AM Digital</footer>
+</div>
+
+<script>
+// Sadržaj sekcije "automatizacije koje štede vreme" — modularno.
+// Dodavanje/uklanjanje stavke: samo izmeni niz AUTOMATIONS.
+// Polja: grupa ("komunikacija" | "iza-scene"), icon (SVG putanje), naslov, opis.
+// Naizmenična cyan/amber ikonica se računa sama po redosledu u grupi.
+(function () {
+  "use strict";
+  var ICON = {
+    mail:    '<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 5.5L20.5 7"/>',
+    ponuda:  '<path d="M6 2h8l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M14 2v4h4"/><path d="M8 13h6M8 17h4"/>',
+    zvezda:  '<path d="M12 3.4l2.6 5.3 5.8.9-4.2 4.1 1 5.8L12 16.8l-5.2 2.7 1-5.8L2.6 9.6l5.8-.9z"/>',
+    followup:'<path d="M9 15 4 10l5-5"/><path d="M4 10h9a7 7 0 0 1 7 7v3"/>',
+    baza:    '<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.6 3.6 3 8 3s8-1.4 8-3V5"/><path d="M4 11v6c0 1.6 3.6 3 8 3s8-1.4 8-3v-6"/>',
+    faktura: '<path d="M6 2h12v20l-3-2-3 2-3-2-3 2z"/><path d="M9 7h6M9 11h6M9 15h4"/>',
+    unos:    '<path d="M4 7h13M13 3l4 4-4 4"/><path d="M20 17H7M11 21l-4-4 4-4"/>',
+    objave:  '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5 8.6 10.5"/>'
+  };
+
+  var AUTOMATIONS = [
+    // Podgrupa 1 — Komunikacija sa klijentima
+    { grupa:"komunikacija", icon:ICON.mail,     naslov:"Automatski odgovori na mejlove",
+      opis:"Upiti pristigli mejlom dobijaju brz odgovor, i van radnog vremena." },
+    { grupa:"komunikacija", icon:ICON.ponuda,   naslov:"Slanje ponuda i predračuna",
+      opis:"Na osnovu upita se automatski pripremi i pošalje ponuda." },
+    { grupa:"komunikacija", icon:ICON.zvezda,   naslov:"Prikupljanje recenzija",
+      opis:"Posle posete klijent dobija poziv da ostavi utisak, bez tvog angažovanja." },
+    { grupa:"komunikacija", icon:ICON.followup, naslov:"Follow-up poruke",
+      opis:"Klijenti koji se nisu javili dobijaju podsetnik u pravom trenutku." },
+
+    // Podgrupa 2 — Automatizacije iza scene
+    { grupa:"iza-scene", icon:ICON.baza,    naslov:"Vođenje baze klijenata",
+      opis:"Podaci o klijentima se sami upisuju i dopunjuju, uvek uredni." },
+    { grupa:"iza-scene", icon:ICON.faktura, naslov:"Obrada računa i faktura",
+      opis:"Papirologija se obrađuje automatski, bez ručnog rada." },
+    { grupa:"iza-scene", icon:ICON.unos,    naslov:"Automatski unos podataka",
+      opis:"Kraj prepisivanju iz jednog mesta u drugo." },
+    { grupa:"iza-scene", icon:ICON.objave,  naslov:"Zakazivanje objava na mrežama",
+      opis:"Sadržaj se objavljuje po planu, bez svakodnevnog ručnog postavljanja." }
+  ];
+
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  Object.keys(AUTOMATIONS.reduce(function(m,a){ m[a.grupa]=1; return m; }, {})).forEach(function (grupa) {
+    var grid = document.querySelector('[data-auto-grid="' + grupa + '"]');
+    if (!grid) return;
+    AUTOMATIONS.filter(function (a) { return a.grupa === grupa; }).forEach(function (a, i) {
+      var amber = (i % 2 === 1) ? " amber" : "";
+      var el = document.createElement("article");
+      el.className = "glass feat fade";
+      el.innerHTML =
+        '<div class="icon-tile' + amber + '" aria-hidden="true">' +
+          '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.7" ' +
+          'stroke-linecap="round" stroke-linejoin="round">' + a.icon + '</svg>' +
+        '</div>' +
+        '<h3>' + esc(a.naslov) + '</h3>' +
+        '<p>' + esc(a.opis) + '</p>';
+      grid.appendChild(el);
+    });
+  });
+})();
+</script>
+
+<script>
+// Blago pojavljivanje sekcija i chat balončića pri skrolu.
+// Uz prefers-reduced-motion sve je odmah vidljivo (CSS ne krije elemente).
+(function () {
+  "use strict";
+  document.body.classList.add("js");   // tek uz JS elementi smeju da budu skriveni pre animacije
+  var targets = document.querySelectorAll(".fade, .reveal");
+  if (!("IntersectionObserver" in window)) {
+    targets.forEach(function (el) { el.classList.add("in"); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.25 });
+  targets.forEach(function (el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>

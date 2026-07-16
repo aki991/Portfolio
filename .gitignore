@@ -1,0 +1,11 @@
+node_modules
+dist
+.env
+.env.local
+.DS_Store
+*.log
+.vercel
+
+# Expo web build (venus-mobile) drži fontove i ikonice pod assets/node_modules —
+# to NISU zavisnosti nego runtime asseti koje bundle učitava, pa moraju u repo.
+!projekti/venus-mobile/assets/node_modules/
