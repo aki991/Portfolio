@@ -220,6 +220,18 @@ p{line-height:1.6}
 @media (max-width:768px){
   .hero-video{display:none}
   .hero-mobile-img{display:block}
+  /* Kontrast teksta: osnovni overlay je 90deg (tamno LEVO, providno desno) jer
+     na desktopu tekst stoji u levoj koloni. Na telefonu tekst ide preko cele
+     širine, pa desna polovina padne na svetli deo slike. Ovde zato zatamnjujemo
+     ceo hero ravnomerno, uz jače dno (prelaz ka sekciji ispod). */
+  .hero-overlay{
+    background:linear-gradient(180deg,
+      rgba(9,20,19,.88) 0%,
+      rgba(9,20,19,.78) 45%,
+      rgba(9,20,19,.92) 100%);
+  }
+  /* prigušena siva je preslaba preko fotografije — puni kontrast na telefonu */
+  .hero-copy .hero-lead{color:var(--ink-hi)}
 }
 /* Široki ekrani (≥1240px): hero medij se NE širi preko cele širine viewporta,
    nego se ograničava na centralnu kolonu (~1240px) i centrira — cela scena
