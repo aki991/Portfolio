@@ -28,7 +28,7 @@
         ['Uža oblast', 'Vođena implantacija i nadogradnja kosti'],
         ['Van ordinacije', 'Planinar i strastveni fotograf prirode']
       ],
-      slika: 'assets/doctors/doktor-1.png', w: 337, h: 988
+      slika: 'assets/doctors/doktor-1.webp', w: 337, h: 988
     },
     {
       ime: 'Dr Tamara Ilić',
@@ -40,7 +40,7 @@
         ['Uža oblast', 'Bezmetalna keramika i digitalni otisak'],
         ['Van ordinacije', 'Slika akvarele — preciznost je i tu njen potpis']
       ],
-      slika: 'assets/doctors/doktor-2.png', w: 303, h: 962
+      slika: 'assets/doctors/doktor-2.webp', w: 303, h: 962
     },
     {
       ime: 'Dr Milica Petrović',
@@ -52,7 +52,7 @@
         ['Uža oblast', 'Digitalni dizajn osmeha i keramičke folije'],
         ['Van ordinacije', 'Ljubitelj opere i dugih šetnji pored Morave']
       ],
-      slika: 'assets/doctors/doktor-3.png', w: 322, h: 954
+      slika: 'assets/doctors/doktor-3.webp', w: 322, h: 954
     },
     {
       ime: 'Dr Jelena Kovač',
@@ -64,7 +64,7 @@
         ['Uža oblast', 'Providne folije (aligneri) i rana prevencija kod dece'],
         ['Van ordinacije', 'Mama dvoje dece — zna tačno kako izgleda prva poseta zubaru']
       ],
-      slika: 'assets/doctors/doktor-4.png', w: 291, h: 967
+      slika: 'assets/doctors/doktor-4.webp', w: 291, h: 967
     },
     {
       ime: 'Dr Marko Đorđević',
@@ -76,7 +76,7 @@
         ['Uža oblast', 'Lečenje parodontopatije i oralne medicine'],
         ['Van ordinacije', 'Šahista i kuvar amater — strpljiv u svemu što radi']
       ],
-      slika: 'assets/doctors/doktor-5.png', w: 351, h: 991
+      slika: 'assets/doctors/doktor-5.webp', w: 351, h: 991
     }
   ];
 

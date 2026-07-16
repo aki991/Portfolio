@@ -1257,7 +1257,7 @@ h1 em,h2 em,h3 em{font-style:italic;color:var(--gold)}
 
 .cs-bg{
   position:absolute;inset:0;z-index:0;
-  background:url("../assets/doctors/ordinacija.jpg") center/cover no-repeat;
+  background:url("../assets/doctors/ordinacija.webp") center/cover no-repeat;
   filter:brightness(.32) saturate(.75);
 }
 /* vinjete: tamnije gore/dole + levo (čitljivost panela) */

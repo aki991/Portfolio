@@ -26,12 +26,12 @@
     'krunice-na-implantima': {
       area: 'Zubni implanti', title: 'Krunice na implantima',
       text: 'Pojedinačna nadoknada izgubljenog zuba bez brušenja susednih zdravih zuba. Implantat preuzima ulogu korena, a keramička krunica na njemu se ne razlikuje od prirodnog zuba. Trajno, stabilno i higijenski najbolje rešenje za jedan ili više nedostajućih zuba.',
-      imgs: ['assets/gallery/holivud1.jpg']
+      imgs: ['assets/gallery/holivud1.webp']
     },
     'bezmetalne-krunice': {
       area: 'Estetska stomatologija', title: 'Bezmetalne krunice',
       text: 'Krunice od potpune keramike, bez metalne osnove — svetlost propuštaju isto kao prirodna gleđ. Zato deluju živo i prirodno čak i na prednjim zubima, bez tamne ivice uz desni. Biokompatibilne su i pogodne za pacijente osetljive na metale.',
-      imgs: ['assets/gallery/holivud1.jpg']
+      imgs: ['assets/gallery/holivud1.webp']
     },
     'cirkonijum-krunice': {
       area: 'Estetska stomatologija', title: 'Cirkonijum krunice',
@@ -41,17 +41,17 @@
     'keramicke-fasete': {
       area: 'Estetska stomatologija', title: 'Keramičke fasete',
       text: 'Tanke keramičke ljuspice (0,3–0,7 mm) koje se lepe na prednju stranu zuba i trajno koriguju oblik, boju i sitne nepravilnosti. Brušenje zuba je minimalno ili ga uopšte nema. Rezultat je prirodan, ujednačen osmeh koji ne izgleda „urađeno".',
-      imgs: ['assets/gallery/fasete1.jpg', 'assets/gallery/fasete6.jpg']
+      imgs: ['assets/gallery/fasete1.webp', 'assets/gallery/fasete6.webp']
     },
     'beljenje-zuba': {
       area: 'Estetska stomatologija', title: 'Beljenje zuba',
       text: 'Profesionalno izbeljivanje u ordinaciji, pod kontrolom lekara i bezbedno po gleđ. Zubi postaju svetliji za nekoliko nijansi već nakon jedne posete. Pre tretmana uklanjamo kamenac i naslage, da bi rezultat bio ravnomeran i dugotrajan.',
-      imgs: ['assets/gallery/izbeljivanje1.png']
+      imgs: ['assets/gallery/izbeljivanje1.webp']
     },
     'ortodoncija': {
       area: 'Estetska stomatologija', title: 'Ortodoncija',
       text: 'Ispravljanje zuba i zagrižaja fiksnim protezama (bravicama) ili providnim folijama — za decu i odrasle. Pravilan zagrižaj nije samo estetika: čuva zube, desni i vilični zglob. Terapiju planiramo na osnovu ortodontske analize i snimka, uz jasan plan i rokove.',
-      imgs: ['assets/gallery/fiksna1.webp', 'assets/gallery/fiksna3.jpg']
+      imgs: ['assets/gallery/fiksna1.webp', 'assets/gallery/fiksna3.webp']
     },
     'uklanjanje-kamenca': {
       area: 'Parodontologija', title: 'Uklanjanje zubnog kamenca',

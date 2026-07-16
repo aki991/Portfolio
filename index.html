@@ -39,10 +39,10 @@
   <section class="hero" aria-label="Uvod">
     <!-- Video bez src-a: <source> se dodaje JS-om samo na desktopu (> 768px),
          pa se na mobilnom video fajl uopšte ne preuzima. -->
-    <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="images/hero.jpg"
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="images/hero.jpg"
            aria-label="Humanoidni robot upravlja holografskim ekranima sa sajtovima, aplikacijama i kalendarom zakazivanja"></video>
-    <img class="hero-fallback" src="images/hero.jpg" alt="Humanoidni robot upravlja holografskim ekranima sa sajtovima, aplikacijama i kalendarom zakazivanja">
-    <img class="hero-mobile-img" src="images/hero_mobile.jpg" alt="Humanoidni robot dodiruje holografski ekran sa ikonama za online zakazivanje kod stomatologa i u restoranu">
+    <img class="hero-fallback" src="images/hero.jpg" width="1600" height="900" alt="Humanoidni robot upravlja holografskim ekranima sa sajtovima, aplikacijama i kalendarom zakazivanja">
+    <img class="hero-mobile-img" src="images/hero_mobile.jpg" width="1000" height="1792" alt="Humanoidni robot dodiruje holografski ekran sa ikonama za online zakazivanje kod stomatologa i u restoranu">
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="hero-copy">
       <p class="eyebrow"><span class="dot" aria-hidden="true"></span>Digitalna agencija za male biznise</p>
@@ -306,7 +306,7 @@
       <a class="glass tile tile-link tile-w2" href="projekti/venus-admin/kalendar/" data-site-demo
          data-demo-label="Venus sistem online zakazivanja — admin panel"
          aria-label="Sistem online zakazivanja — otvori uživo aplikaciju preko stranice">
-        <div class="thumb"><img src="images/app/app-kalendar-thumb.jpg" alt="Kalendar termina u Venus aplikaciji — nedeljni raspored po doktorima"></div>
+        <div class="thumb"><img src="images/app/app-kalendar-thumb.jpg" width="800" height="500" loading="lazy" decoding="async" alt="Kalendar termina u Venus aplikaciji — nedeljni raspored po doktorima"></div>
         <div class="cap"><span class="chip" aria-hidden="true"></span>
           <div class="cap-text">
             <h3>Sistem online zakazivanja <span class="tile-ext" aria-hidden="true">&#8599;</span></h3>
