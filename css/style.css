@@ -170,12 +170,11 @@ p{line-height:1.6}
   padding:26px max(72px, calc(50% - 548px));
   border-bottom:1px solid rgba(92,224,245,.08);position:relative;z-index:3}
 .logo{display:flex;align-items:center;gap:12px}
-.logo-mark{width:34px;height:34px;border-radius:11px;border:1px solid var(--line-strong);
-  background:linear-gradient(140deg,rgba(79,224,245,.14),rgba(46,143,216,.06));position:relative;flex:none;
-  box-shadow:0 0 18px rgba(79,224,245,.2)}
-.logo-mark::after{content:"";position:absolute;right:6px;top:6px;width:7px;height:7px;border-radius:50%;
-  background:var(--amber);box-shadow:0 0 10px var(--amber)}
-.logo-name{color:var(--ink-hi);font-weight:800;font-size:17px;letter-spacing:.4px}
+.logo-img{height:48px;width:auto;flex:none}
+.logo-img-foot{height:32px}
+.logo-name{font-weight:600;font-size:25px;letter-spacing:1px}
+.logo-am{color:var(--cyan)}
+.logo-studio{color:var(--amber)}
 .menu{display:flex;align-items:center;gap:30px}
 .menu-link{color:var(--ink-mid);font-size:15px;font-weight:600;transition:color .15s ease,text-shadow .15s ease}
 .menu-link:hover{color:var(--cyan);text-shadow:0 0 14px rgba(79,224,245,.5)}
