@@ -7,6 +7,14 @@
       "destination": "/index.html"
     },
     {
+      "source": "/privatnost",
+      "destination": "/privatnost/index.html"
+    },
+    {
+      "source": "/privatnost/",
+      "destination": "/privatnost/index.html"
+    },
+    {
       "source": "/projekti/venus",
       "destination": "/projekti/venus/index.html"
     },
