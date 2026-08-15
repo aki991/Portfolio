@@ -15,6 +15,14 @@
       "destination": "/privatnost/index.html"
     },
     {
+      "source": "/uslovi",
+      "destination": "/uslovi/index.html"
+    },
+    {
+      "source": "/uslovi/",
+      "destination": "/uslovi/index.html"
+    },
+    {
       "source": "/projekti/venus",
       "destination": "/projekti/venus/index.html"
     },
