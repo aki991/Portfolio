@@ -564,7 +564,7 @@ p{line-height:1.6}
   padding:30px max(72px, calc(50% - 548px));
   border-top:1px solid rgba(92,224,245,.08);background:var(--canvas-deep)}
 .logo-copy{color:var(--ink-low);font-size:13px}
-.foot-links{display:flex;gap:26px}
+.foot-links{display:flex;flex-wrap:wrap;gap:26px}
 .foot-links a{font-size:14px;color:var(--ink-low);transition:color .15s ease}
 .foot-links a:hover{color:var(--cyan)}
 
@@ -596,6 +596,7 @@ p{line-height:1.6}
   .form-grid{grid-template-columns:1fr}
   .contact-panel{padding:56px 24px}
   .footer{flex-direction:column;gap:18px}
+  .foot-links{justify-content:center;gap:14px 20px;text-align:center}
 }
 
 /* ============ telefoni (≤480px) ============ */
